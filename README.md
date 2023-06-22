@@ -6,11 +6,14 @@
 2. Navigate to the directory where your FastAPI application code (e.g., main.py) is located using the cd command. For example, if your code is in the my-app/backend directory, run:
    ### `cd my-app/backend`
 
-3. Run the server using the 'uvicorn' command
+3. Run the followng command to install FastAPI
+   ### `pip install fastapi`
+
+4. Run the server using the 'uvicorn' command
    ### `uvicorn main:app --reload`
    Here, main:app refers to the app object created in your main.py file. The --reload option enables auto-reloading on code changes.
 
-4. Once the server is running, you can visit [http://localhost:8000](http://localhost:8000) in your web browser or send requests to the defined endpoints to interact with your FastAPI server.
+5. Once the server is running, you can visit [http://localhost:8000](http://localhost:8000) in your web browser or send requests to the defined endpoints to interact with your FastAPI server.
    Ensure that you have activated the correct Anaconda environment where FastAPI and its dependencies are installed before running the server.
 
 # To run a React frontend, you can follow these steps:
