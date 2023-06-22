@@ -19,18 +19,18 @@
 # To run a React frontend, you can follow these steps:
 
 1. Open a terminal or command prompt.
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+   This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 2. Navigate to the directory where your React app code is located. For example, if your code is in the my-app/src, run:
-### `cd my-app/frontend`
+   ### `cd my-app/frontend`
 3. Install the dependencies by running the following command:
-### `npm install`
+   ### `npm install`
 4. After the dependencies are installed, start the development server by running:
-### `npm start`
+   ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+   Runs the app in the development mode.\
+   Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+   The page will reload when you make changes.\
+   You may also see any lint errors in the console.
 
 
