@@ -5,6 +5,8 @@ from schedule import get_time_slots_schedule
 from schedule import available_appointments 
 from datetime import datetime, timedelta, date
 import pandas as pd
+from typing import List
+
 
 app = FastAPI()
 
@@ -37,7 +39,7 @@ class TimeSlot(BaseModel):
     time_slot: str
 
 class TimeSlotsResponse(BaseModel):
-    timeSlots: list[str]
+    timeSlots: List[str]
 
 @app.get("/api/get-time-slots", response_model=TimeSlotsResponse)
 async def get_time_slots():

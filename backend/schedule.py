@@ -144,9 +144,17 @@ def _find_available_time_slots(df, operation, physician_slots, slots, date):
     available_procedure = []
     available_date = []
     quality_scores = []
+    #df2 = pd.DataFrame()
+    #df2.loc[:,'abs'] = df['Time'].apply(_am_to_abs)
+    #df2 = df2['abs'].to_frame()
+
+    ##########Warning on this line
     df['abs'] = df.Time.apply(_am_to_abs) 
 
-   
+    #print(df2['Time'].type())
+
+    #df.rename(columns = {'abs':'Time'}, inplace = True)
+    
     # Convert DataFrame column to datetime objects
     if operation == 'DXLF':
         mean = 400
@@ -158,14 +166,14 @@ def _find_available_time_slots(df, operation, physician_slots, slots, date):
             df.sort_values(by='abs', inplace=True)
             #print(df,"df DXLF after sorting without indexing upto 12 pm")
             df = df.reset_index(drop=True)
-            print(df,"df DXLF after changing index")
+            #print(df,"df DXLF after changing index")
         else:
             filt = ( df['abs'] >=  phy_start_time)
             df = df[filt]
             # Sort DataFrame by time in ascending order
             df.sort_values(by='abs', inplace=True)
             df = df.reset_index(drop=True)
-            print(df,"df dxlf after filtering from 1 pm to end")
+            #print(df,"df dxlf after filtering from 1 pm to end")
 
         # Sort DataFrame by time in ascending order
         # df.sort_values(by='abs', inplace=True)
@@ -196,7 +204,7 @@ def _find_available_time_slots(df, operation, physician_slots, slots, date):
            
             current_time = _add_minutes(current_time, process_time)
             
-            next_time = df.iloc[index + 1]['abs'] if index < len(df) - 1 else phy_end_time
+            next_time = df.at[index + 1, 'abs'] if index < len(df) - 1 else phy_end_time
 
             # Calculate time duration between current and next appointments
             duration = _time_difference(current_time, next_time)
@@ -272,7 +280,7 @@ def _find_available_time_slots(df, operation, physician_slots, slots, date):
         # Iterate through DataFrame to find available time slots
         for index, row in df.iterrows():
             current_time = row['abs']
-            next_time = df.iloc[index + 1]['abs'] if index < len(df) - 1 else phy_start_time
+            next_time = df.at[index + 1]['abs'] if index < len(df) - 1 else phy_start_time
 
             # only one data entry at physician entry time
             if current_time == next_time:
@@ -330,6 +338,7 @@ def available_appointments(df, operation, num_days):
         physician_slots = [("08:00","12:00"),("13:00","17:00")]
         
         # initialize today's date
+        # start_date = date.today()
         start_date = date(2023, 6, 1)
         df_list = []
         for single in range(num_days):
